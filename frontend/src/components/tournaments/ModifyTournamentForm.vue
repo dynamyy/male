@@ -3,13 +3,19 @@
     <v-card-text>
       <v-container>
         <v-row>
-          <v-col cols="12" sm="6">
+          <v-col
+            cols="12"
+            sm="6"
+          >
             <v-text-field
               v-model="newTournament.name"
               label="Nimi*"
             />
           </v-col>
-          <v-col cols="12" sm="6">
+          <v-col
+            cols="12"
+            sm="6"
+          >
             <v-autocomplete
               v-model="newTournament.location"
               :items="locationCache"
@@ -22,14 +28,20 @@
               clearable
             />
           </v-col>
-          <v-col cols="12" sm="6">
+          <v-col
+            cols="12"
+            sm="6"
+          >
             <v-text-field
               v-model="newTournament.startDate"
               label="Algus*"
               type="date"
             />
           </v-col>
-          <v-col cols="12" sm="6">
+          <v-col
+            cols="12"
+            sm="6"
+          >
             <v-text-field
               v-model="newTournament.endDate"
               label="Lõpp"
@@ -41,7 +53,7 @@
       </v-container>
     </v-card-text>
     <v-card-actions>
-      <v-spacer></v-spacer>
+      <v-spacer />
       <DeleteButtonWithAlert
         button-text="Kustuta turniir"
         @nuke-confirmed="nukeTournament"
@@ -49,8 +61,8 @@
       <v-btn
         variant="elevated"
         color="primary"
-        @click="submitNewTournament"
         :disabled="!isFormValid"
+        @click="submitNewTournament"
       >
         Salvesta
       </v-btn>

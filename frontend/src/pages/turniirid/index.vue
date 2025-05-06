@@ -6,7 +6,10 @@
       </v-col>
     </v-row>
     <v-row class="mb-4">
-      <v-col cols="12" sm="3">
+      <v-col
+        cols="12"
+        sm="3"
+      >
         <v-text-field
           v-model="searchName"
           label="Otsi nime järgi"
@@ -15,7 +18,10 @@
         />
       </v-col>
 
-      <v-col cols="12" sm="1">
+      <v-col
+        cols="12"
+        sm="1"
+      >
         <v-select
           v-model="resultsPerPage"
           :items="[10, 20, 50]"
@@ -24,7 +30,10 @@
         />
       </v-col>
 
-      <v-col cols="12" sm="4">
+      <v-col
+        cols="12"
+        sm="4"
+      >
         <v-select
           v-model="displayTournaments"
           :items="['Käimas', 'Tulevased', 'Lõppenud']"
@@ -33,18 +42,28 @@
         />
       </v-col>
 
-      <v-col cols="12" sm="4" class="d-flex justify-end">
-        <v-btn color="primary" @click="openAddTournamentDialog">Lisa uus turniir</v-btn>
+      <v-col
+        cols="12"
+        sm="4"
+        class="d-flex justify-end"
+      >
+        <v-btn
+          color="primary"
+          @click="openAddTournamentDialog"
+        >
+          Lisa uus turniir
+        </v-btn>
       </v-col>
     </v-row>
 
-    <TournamentDisplay v-for="(tournamentType) in displayTournaments"
-                       :tournaments="getTournamentsForType(tournamentType)"
+    <TournamentDisplay
+      v-for="(tournamentType) in displayTournaments"
+      :tournaments="getTournamentsForType(tournamentType)"
     />
 
     <AddTournamentDialog
-      v-model:showDialog="showAddTournamentDialog"
-      @update:showDialog="updateShowAddTournamentDialog"
+      v-model:show-dialog="showAddTournamentDialog"
+      @update:show-dialog="updateShowAddTournamentDialog"
       @tournament-updated="handleTournamentUpdate"
     />
   </v-container>
@@ -80,6 +99,49 @@ export default {
       resultsPerPage: 10,
       displayTournaments: ["Käimas"],
     }
+  },
+
+  computed: {
+    ongoingTournamentsFiltered() {
+      let filtered = this.onGoingTournaments.tournaments.filter((tournament) =>
+        tournament.name.toLowerCase().includes(this.searchName.toLowerCase())
+      )
+      return {
+        headerText: "Hetkel toimumas:",
+        noTournamentsText: "Hetkel pole ühtegi turniiri toimumas",
+        tournaments: filtered,
+      }
+    },
+
+    upcomingTournamentsFiltered() {
+      let filtered = this.upcomingTournaments.tournaments.filter((tournament) =>
+        tournament.name.toLowerCase().includes(this.searchName.toLowerCase())
+      )
+      return {
+        headerText: "Tulevased turniirid:",
+        noTournamentsText: "Hetkel pole ühtei turniiri tulemas",
+        tournaments: filtered,
+      }
+    },
+
+    finishedTournamentsFiltered() {
+      let filtered = this.finishedTournaments.tournaments.filter((tournament) =>
+        tournament.name.toLowerCase().includes(this.searchName.toLowerCase())
+      )
+      return {
+        headerText: "Lõppenud turniirid:",
+        noTournamentsText: "Lõppenud turniirid puuduvad",
+        tournaments: filtered,
+      }
+    },
+  },
+
+  created() {
+    this.$watch(
+      () => this.$route.params.id,
+      this.fetchTournaments,
+      {immediate: true}
+    )
   },
 
   methods: {
@@ -128,49 +190,6 @@ export default {
     clearSearch() {
       this.searchName = "";
     },
-  },
-
-  computed: {
-    ongoingTournamentsFiltered() {
-      let filtered = this.onGoingTournaments.tournaments.filter((tournament) =>
-        tournament.name.toLowerCase().includes(this.searchName.toLowerCase())
-      )
-      return {
-        headerText: "Hetkel toimumas:",
-        noTournamentsText: "Hetkel pole ühtegi turniiri toimumas",
-        tournaments: filtered,
-      }
-    },
-
-    upcomingTournamentsFiltered() {
-      let filtered = this.upcomingTournaments.tournaments.filter((tournament) =>
-        tournament.name.toLowerCase().includes(this.searchName.toLowerCase())
-      )
-      return {
-        headerText: "Tulevased turniirid:",
-        noTournamentsText: "Hetkel pole ühtei turniiri tulemas",
-        tournaments: filtered,
-      }
-    },
-
-    finishedTournamentsFiltered() {
-      let filtered = this.finishedTournaments.tournaments.filter((tournament) =>
-        tournament.name.toLowerCase().includes(this.searchName.toLowerCase())
-      )
-      return {
-        headerText: "Lõppenud turniirid:",
-        noTournamentsText: "Lõppenud turniirid puuduvad",
-        tournaments: filtered,
-      }
-    },
-  },
-
-  created() {
-    this.$watch(
-      () => this.$route.params.id,
-      this.fetchTournaments,
-      {immediate: true}
-    )
   },
 }
 

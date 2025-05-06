@@ -1,4 +1,5 @@
 const Pool = require('pg').Pool;
+// Eemaldasin enda andmebaasi info
 const pool = new Pool({
   user: process.env.DB_USER || 'postgres',
   password: process.env.DB_PASSWORD || 'sql',

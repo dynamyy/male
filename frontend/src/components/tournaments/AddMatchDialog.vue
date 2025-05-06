@@ -1,5 +1,8 @@
 <template>
-  <v-dialog v-model="showAddMatchDialog" max-width="500">
+  <v-dialog
+    v-model="showAddMatchDialog"
+    max-width="500"
+  >
     <v-card>
       <v-card-title>
         <span class="headline">{{ isUpdate ? 'Muuda partiid' : 'Lisa partii' }}</span>
@@ -45,7 +48,7 @@
                 variant="outlined"
                 :error="!isWinnerAndEndTimeValid"
                 :error-messages="!isWinnerAndEndTimeValid ? ['Võitja ja lõppaeg peavad mõlemad olema määratud või mõlemad määramata'] : []"
-              ></v-select>
+              />
             </v-col>
             <v-col cols="12">
               <v-text-field
@@ -66,13 +69,18 @@
         </v-container>
       </v-card-text>
       <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn variant="tonal" @click="closeDialog">Tühista</v-btn>
+        <v-spacer />
+        <v-btn
+          variant="tonal"
+          @click="closeDialog"
+        >
+          Tühista
+        </v-btn>
         <v-btn
           variant="elevated"
           color="primary"
-          @click="submitMatch"
           :disabled="!isFormValid || isSamePlayer || !isWinnerAndEndTimeValid"
+          @click="submitMatch"
         >
           {{ isUpdate ? 'Uuenda' : 'Salvesta' }}
         </v-btn>

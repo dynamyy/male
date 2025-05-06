@@ -1,5 +1,8 @@
 <template>
-  <v-dialog v-model="showAddClubDialog" max-width="500">
+  <v-dialog
+    v-model="showAddClubDialog"
+    max-width="500"
+  >
     <v-card>
       <v-card-title>
         <span class="headline">Lisa uus klubi</span>
@@ -30,13 +33,18 @@
         </v-container>
       </v-card-text>
       <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn variant="tonal" @click="closeDialog">Tühista</v-btn>
+        <v-spacer />
+        <v-btn
+          variant="tonal"
+          @click="closeDialog"
+        >
+          Tühista
+        </v-btn>
         <v-btn
           variant="elevated"
           color="primary"
-          @click="submitNewClub"
           :disabled="!isFormValid"
+          @click="submitNewClub"
         >
           Salvesta
         </v-btn>

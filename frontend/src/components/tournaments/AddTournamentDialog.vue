@@ -1,5 +1,8 @@
 <template>
-  <v-dialog v-model="showAddTournamentDialog" max-width="500">
+  <v-dialog
+    v-model="showAddTournamentDialog"
+    max-width="500"
+  >
     <v-card>
       <v-card-title>
         <span class="headline">Lisa turniir</span>
@@ -45,13 +48,18 @@
         </v-container>
       </v-card-text>
       <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn variant="tonal" @click="closeDialog">Tühista</v-btn>
+        <v-spacer />
+        <v-btn
+          variant="tonal"
+          @click="closeDialog"
+        >
+          Tühista
+        </v-btn>
         <v-btn
           variant="elevated"
           color="primary"
-          @click="submitNewTournament"
           :disabled="!isFormValid"
+          @click="submitNewTournament"
         >
           Salvesta
         </v-btn>

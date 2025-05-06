@@ -26,7 +26,7 @@
       </v-container>
     </v-card-text>
     <v-card-actions>
-      <v-spacer></v-spacer>
+      <v-spacer />
       <DeleteButtonWithAlert
         button-text="Kustuta klubi"
         @nuke-confirmed="nukeClub"
@@ -34,8 +34,8 @@
       <v-btn
         variant="elevated"
         color="primary"
-        @click="submitNewClub"
         :disabled="!isFormValid"
+        @click="submitNewClub"
       >
         Salvesta
       </v-btn>

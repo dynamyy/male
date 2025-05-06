@@ -3,40 +3,58 @@
     <v-card-text>
       <v-container>
         <v-row>
-          <v-col cols="12" sm="4">
+          <v-col
+            cols="12"
+            sm="4"
+          >
             <v-text-field
               v-model="newPlayer.firstName"
               label="Eesnimi"
             />
           </v-col>
-          <v-col cols="12" sm="4">
+          <v-col
+            cols="12"
+            sm="4"
+          >
             <v-text-field
               v-model="newPlayer.lastName"
               label="Perenimi"
             />
           </v-col>
-          <v-col cols="12" sm="4">
+          <v-col
+            cols="12"
+            sm="4"
+          >
             <v-text-field
               v-model="newPlayer.idCode"
               label="Isikukood"
             />
           </v-col>
-          <v-col cols="12" sm="4">
+          <v-col
+            cols="12"
+            sm="4"
+          >
             <v-select
               v-model="newPlayer.gender"
               label="Sugu"
               :items="['Mees', 'Naine', 'Muu']"
               variant="outlined"
-            ></v-select>
+            />
           </v-col>
-          <v-col cols="12" sm="4">
+          <v-col
+            cols="12"
+            sm="4"
+          >
             <v-text-field
               v-model="newPlayer.dateOfBirth"
               label="Sünniaeg"
               type="date"
             />
           </v-col>
-          <v-col cols="12" sm="4">
+          <v-col
+            cols="12"
+            sm="4"
+          >
             <v-autocomplete
               v-model="newPlayer.club"
               :items="clubCache"
@@ -49,7 +67,10 @@
               clearable
             />
           </v-col>
-          <v-col cols="12" sm="4">
+          <v-col
+            cols="12"
+            sm="4"
+          >
             <v-text-field
               v-model="newPlayer.ranking"
               label="Reiting"
@@ -59,7 +80,7 @@
       </v-container>
     </v-card-text>
     <v-card-actions>
-      <v-spacer></v-spacer>
+      <v-spacer />
       <DeleteButtonWithAlert
         button-text="Kustuta mängija"
         @nuke-confirmed="nukePlayer"
@@ -67,8 +88,8 @@
       <v-btn
         variant="elevated"
         color="primary"
-        @click="submitNewPlayer"
         :disabled="!isFormValid"
+        @click="submitNewPlayer"
       >
         Salvesta
       </v-btn>

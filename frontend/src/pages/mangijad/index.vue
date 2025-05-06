@@ -6,7 +6,10 @@
       </v-col>
     </v-row>
     <v-row class="mb-4">
-      <v-col cols="12" sm="3">
+      <v-col
+        cols="12"
+        sm="3"
+      >
         <v-text-field
           v-model="searchName"
           label="Otsi nime järgi"
@@ -15,7 +18,10 @@
         />
       </v-col>
 
-      <v-col cols="12" sm="1">
+      <v-col
+        cols="12"
+        sm="1"
+      >
         <v-select
           v-model="resultsPerPage"
           :items="[10, 20, 50]"
@@ -24,7 +30,10 @@
         />
       </v-col>
 
-      <v-col cols="12" sm="2">
+      <v-col
+        cols="12"
+        sm="2"
+      >
         <v-select
           v-model="sortBy"
           :items="['Reiting', 'Nimi']"
@@ -32,18 +41,28 @@
         />
       </v-col>
 
-      <v-col cols="12" sm="6" class="d-flex justify-end">
-        <v-btn color="primary" @click="openAddPlayerDialog">Lisa uus mängija</v-btn>
+      <v-col
+        cols="12"
+        sm="6"
+        class="d-flex justify-end"
+      >
+        <v-btn
+          color="primary"
+          @click="openAddPlayerDialog"
+        >
+          Lisa uus mängija
+        </v-btn>
       </v-col>
     </v-row>
 
     <v-row>
       <v-col
-        cols="12"
         v-for="player in filteredPlayers"
         :key="player.id"
+        cols="12"
         sm="6"
-        md="4">
+        md="4"
+      >
         <v-card
           class="mb-4"
           outlined
@@ -70,9 +89,9 @@
       </v-col>
     </v-row>
     <AddPlayerDialog
-      :showDialog="showAddPlayerDialog"
+      :show-dialog="showAddPlayerDialog"
       @player-added="fetchAllPlayersData"
-      @update:showDialog="handleShowAddDialog"
+      @update:show-dialog="handleShowAddDialog"
     />
   </v-container>
 </template>
@@ -92,36 +111,6 @@ export default {
       page: 1,
       showAddPlayerDialog: false,
     }
-  },
-
-  created() {
-    this.$watch(
-      () => this.$route.params.id,
-      this.fetchAllPlayersData,
-      {immediate: true}
-    )
-  },
-
-  methods: {
-    async fetchAllPlayersData() {
-      this.players = await fetchAllPlayers()
-    },
-
-    goToPlayerDetails(playerId) {
-      this.$router.push(`/mangijad/${playerId}`)
-    },
-
-    openAddPlayerDialog() {
-      this.showAddPlayerDialog = true;
-    },
-
-    handleShowAddDialog(value) {
-      this.showAddPlayerDialog = value
-    },
-
-    clearSearch() {
-      this.searchName = "";
-    },
   },
 
   computed: {
@@ -159,6 +148,36 @@ export default {
     },
     resultsPerPage() {
       this.page = 1
+    },
+  },
+
+  created() {
+    this.$watch(
+      () => this.$route.params.id,
+      this.fetchAllPlayersData,
+      {immediate: true}
+    )
+  },
+
+  methods: {
+    async fetchAllPlayersData() {
+      this.players = await fetchAllPlayers()
+    },
+
+    goToPlayerDetails(playerId) {
+      this.$router.push(`/mangijad/${playerId}`)
+    },
+
+    openAddPlayerDialog() {
+      this.showAddPlayerDialog = true;
+    },
+
+    handleShowAddDialog(value) {
+      this.showAddPlayerDialog = value
+    },
+
+    clearSearch() {
+      this.searchName = "";
     },
   },
 }

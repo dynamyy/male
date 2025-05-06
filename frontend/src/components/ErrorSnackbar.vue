@@ -3,11 +3,13 @@
     v-model="showSnackbar"
     vertical
   >
-    <div class="text-subtitle-1 pb-2">Midagi läks valesti</div>
+    <div class="text-subtitle-1 pb-2">
+      Midagi läks valesti
+    </div>
 
     <p>{{ snackbarText }}</p>
 
-    <template v-slot:actions>
+    <template #actions>
       <v-btn
         color="indigo"
         variant="text"

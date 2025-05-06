@@ -1,8 +1,13 @@
 <template>
   <v-container>
-    <v-row v-if="tournament" class="mb-4">
+    <v-row
+      v-if="tournament"
+      class="mb-4"
+    >
       <v-col>
-        <h1 class="mb-2"><a href="/turniirid">Turniirid</a> / {{ tournament.name }}</h1>
+        <h1 class="mb-2">
+          <a href="/turniirid">Turniirid</a> / {{ tournament.name }}
+        </h1>
       </v-col>
     </v-row>
     <v-row v-if="tournament">
@@ -15,12 +20,12 @@
     </v-row>
     <v-row cols="12">
       <v-col>
-        <v-divider :thickness="3"></v-divider>
+        <v-divider :thickness="3" />
       </v-col>
     </v-row>
     <v-row>
       <v-col>
-        <MatchesSearch :tournamentId="tournamentId" />
+        <MatchesSearch :tournament-id="tournamentId" />
       </v-col>
     </v-row>
   </v-container>

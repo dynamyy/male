@@ -1,5 +1,10 @@
 <template>
-  <h2 v-if="!frontPage" class="mb-2">{{ tournaments.headerText }}</h2>
+  <h2
+    v-if="!frontPage"
+    class="mb-2"
+  >
+    {{ tournaments.headerText }}
+  </h2>
   <v-row v-if="tournaments.tournaments.length">
     <v-col
       v-for="(t, index) in tournaments.tournaments"
@@ -15,7 +20,7 @@
       >
         <v-card-title>{{ t.name }}</v-card-title>
         <v-card-subtitle>
-          Algus: {{ t.startDate }} <br />
+          Algus: {{ t.startDate }} <br>
           Lõpp: {{ t.endDate }}
         </v-card-subtitle>
         <v-card-text>
@@ -26,7 +31,10 @@
     </v-col>
   </v-row>
   <v-row v-else>
-    <v-col cols="12" class="mb-4">
+    <v-col
+      cols="12"
+      class="mb-4"
+    >
       {{ tournaments.noTournamentsText }}
     </v-col>
   </v-row>
@@ -35,11 +43,6 @@
 <script>
 export default {
   name: "TournamentDisplay",
-
-  data() {
-    return {
-    }
-  },
   props: {
     tournaments: {
       type: Object,
@@ -51,14 +54,19 @@ export default {
     }
   },
 
+  data() {
+    return {
+    }
+  },
+
+  created() {
+
+  },
+
   methods: {
     goToTournamentDetails(tournamentId) {
       this.$router.push(`/turniirid/${tournamentId}`)
     },
-
-  },
-
-  created() {
 
   },
 

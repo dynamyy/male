@@ -46,6 +46,15 @@ export async function fetchTopPlayers(limit) {
   }
 }
 
+export async function fetchTopClubPlayers(clubName) {
+  try {
+    const response = await apiClient.get(`/players/clubtop/${clubName}`);
+    return mapClubTopsData(response.data);
+  } catch (error) {
+    console.error('Error fetching Club\'s top players', error);
+  }
+}
+
 export async function addPlayer(player) {
   try {
     await apiClient.post('/players', player);
@@ -59,6 +68,20 @@ export async function removePlayer(playerId) {
     await apiClient.delete(`/players/${playerId}`);
   } catch (error) {
     console.error('Error deleting player', error);
+  }
+}
+
+function mapClubTopsData(players) {
+  return players.map(player => {
+    return mapClubTopData(player)
+  })
+}
+
+function mapClubTopData(player) {
+  return {
+    name: player.isik,
+    points: parseFloat(player.punktisumma).toFixed(1),
+    time: player.aeg,
   }
 }
 

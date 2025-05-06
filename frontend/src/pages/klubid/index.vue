@@ -6,7 +6,10 @@
       </v-col>
     </v-row>
     <v-row class="mb-4">
-      <v-col cols="12" sm="3">
+      <v-col
+        cols="12"
+        sm="3"
+      >
         <v-text-field
           v-model="searchName"
           label="Otsi nime järgi"
@@ -15,7 +18,10 @@
         />
       </v-col>
 
-      <v-col cols="12" sm="1">
+      <v-col
+        cols="12"
+        sm="1"
+      >
         <v-select
           v-model="resultsPerPage"
           :items="[10, 20, 50]"
@@ -24,7 +30,10 @@
         />
       </v-col>
 
-      <v-col cols="12" sm="2">
+      <v-col
+        cols="12"
+        sm="2"
+      >
         <v-select
           v-model="sortBy"
           :items="['Reiting', 'Nimi', 'Liikmete arv']"
@@ -32,8 +41,17 @@
         />
       </v-col>
 
-      <v-col cols="12" sm="6" class="d-flex justify-end">
-        <v-btn color="primary" @click="openAddClubDialog">Lisa uus klubi</v-btn>
+      <v-col
+        cols="12"
+        sm="6"
+        class="d-flex justify-end"
+      >
+        <v-btn
+          color="primary"
+          @click="openAddClubDialog"
+        >
+          Lisa uus klubi
+        </v-btn>
       </v-col>
     </v-row>
 
@@ -56,7 +74,7 @@
             <strong>Keskmine reiting:</strong> {{ club.averageRating }}
             | <strong>Liikmeid:</strong> {{ club.membersCount }}
           </v-card-subtitle>
-          <v-card-text></v-card-text>
+          <v-card-text />
         </v-card>
       </v-col>
     </v-row>
@@ -70,8 +88,8 @@
       </v-col>
     </v-row>
     <AddClubDialog
-      v-model:showDialog="showAddClubDialog"
-      @update:showDialog="updateShowClubDialog"
+      v-model:show-dialog="showAddClubDialog"
+      @update:show-dialog="updateShowClubDialog"
       @club-updated="fetchAllClubsData"
     />
   </v-container>
@@ -82,8 +100,8 @@ import {fetchAllClubs} from "@/wrapper/clubsApiWrapper.js";
 import AddClubDialog from "@/components/clubs/AddClubDialog.vue";
 
 export default {
-  components: {AddClubDialog},
   name: "ClubsPage",
+  components: {AddClubDialog},
   data() {
     return {
       searchName: "",
@@ -126,13 +144,6 @@ export default {
       return Math.ceil(this.totalFiltered / this.resultsPerPage)
     },
   },
-  created() {
-    this.$watch(
-      () => this.$route.params.id,
-      this.fetchAllClubsData,
-      {immediate: true}
-    )
-  },
   watch: {
     sortBy() {
       this.page = 1
@@ -140,6 +151,13 @@ export default {
     resultsPerPage() {
       this.page = 1
     },
+  },
+  created() {
+    this.$watch(
+      () => this.$route.params.id,
+      this.fetchAllClubsData,
+      {immediate: true}
+    )
   },
   methods: {
     async fetchAllClubsData() {

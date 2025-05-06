@@ -1,7 +1,12 @@
 <template>
   <v-row>
     <v-col>
-      <v-btn color="primary" @click="openAddMatchDialog">Lisa partii</v-btn>
+      <v-btn
+        color="primary"
+        @click="openAddMatchDialog"
+      >
+        Lisa partii
+      </v-btn>
     </v-col>
   </v-row>
   <v-row>
@@ -14,10 +19,14 @@
         item-key="id"
         class="elevation-1"
       >
-        <template v-slot:top>
-          <v-toolbar flat dense color="secondary">
+        <template #top>
+          <v-toolbar
+            flat
+            dense
+            color="secondary"
+          >
             <v-toolbar-title>Partiid</v-toolbar-title>
-            <v-spacer></v-spacer>
+            <v-spacer />
             <v-text-field
               v-model="searchName"
               label="Otsi mängija nime järgi"
@@ -30,8 +39,11 @@
           </v-toolbar>
         </template>
 
-        <template v-slot:item.action="{ item }">
-          <v-row align="center" justify="end">
+        <template #item.action="{ item }">
+          <v-row
+            align="center"
+            justify="end"
+          >
             <v-btn
               color="secondary"
               @click.stop="openUpdateMatchDialog(item)"
@@ -45,19 +57,20 @@
   </v-row>
 
   <AddMatchDialog
-    v-model:showDialog="showAddDialog"
-    :tournamentId="tournamentId"
+    v-model:show-dialog="showAddDialog"
+    :tournament-id="tournamentId"
     @match-updated="fetchAllMatchesData"
-    @update:showDialog="handleShowAddDialog"
+    @update:show-dialog="handleShowAddDialog"
   />
 
-  <AddMatchDialog v-if="selectedMatch"
-                  :tournamentId="tournamentId"
-                  v-model:showDialog="showUpdateDialog"
-                  :is-update="true"
-                  :match-id="selectedMatch.id"
-                  @match-updated="fetchAllMatchesData"
-                  @update:showDialog="handleShowUpdateDialog"
+  <AddMatchDialog
+    v-if="selectedMatch"
+    v-model:show-dialog="showUpdateDialog"
+    :tournament-id="tournamentId"
+    :is-update="true"
+    :match-id="selectedMatch.id"
+    @match-updated="fetchAllMatchesData"
+    @update:show-dialog="handleShowUpdateDialog"
   />
 </template>
 
@@ -67,6 +80,13 @@ import AddMatchDialog from "@/components/tournaments/AddMatchDialog.vue";
 
 export default {
   components: {AddMatchDialog},
+
+  props: {
+    tournamentId: {
+      type: String,
+      required: true,
+    }
+  },
   data() {
     return {
       headers: [
@@ -82,13 +102,6 @@ export default {
       selectedMatch: null,
       showUpdateDialog: false,
       showAddDialog: false,
-    }
-  },
-
-  props: {
-    tournamentId: {
-      type: String,
-      required: true,
     }
   },
 

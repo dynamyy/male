@@ -5,7 +5,10 @@
 
     <!-- main content -->
     <v-main>
-      <v-container fluid class="mt-4">
+      <v-container
+        fluid
+        class="mt-4"
+      >
         <v-row>
           <!-- Main content column -->
           <v-col cols="12">

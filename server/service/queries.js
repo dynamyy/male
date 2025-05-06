@@ -167,6 +167,10 @@ const SELECT_TOP_PLAYERS = `
         LIMIT $1
 `;
 
+const SELECT_CLUB_TOP_PLAYERS = `
+        SELECT * FROM f_klubiparimad($1);
+`;
+
 function getAddOrUpdatePlayerQuery(isUpdate) {
     if (isUpdate) {
         return `
@@ -316,4 +320,5 @@ module.exports = {
     SELECT_TOP_CLUBS,
     getAddOrUpdateClubQuery,
     DELETE_CLUB,
+    SELECT_CLUB_TOP_PLAYERS,
 };

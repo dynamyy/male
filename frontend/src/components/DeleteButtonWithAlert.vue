@@ -1,6 +1,15 @@
 <template>
-  <v-btn variant="tonal" base-color="red" @click="startNukeSequence">{{ buttonText }}</v-btn>
-  <v-dialog v-model="showNukeConfirmationAlert" max-width="500">
+  <v-btn
+    variant="tonal"
+    base-color="red"
+    @click="startNukeSequence"
+  >
+    {{ buttonText }}
+  </v-btn>
+  <v-dialog
+    v-model="showNukeConfirmationAlert"
+    max-width="500"
+  >
     <v-card>
       <v-card-text>
         <v-container>
@@ -12,8 +21,13 @@
         </v-container>
       </v-card-text>
       <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn variant="tonal" @click="abortNukeSequence">Tühista</v-btn>
+        <v-spacer />
+        <v-btn
+          variant="tonal"
+          @click="abortNukeSequence"
+        >
+          Tühista
+        </v-btn>
         <v-btn
           variant="elevated"
           color="primary"
@@ -44,6 +58,10 @@ export default {
     }
   },
 
+  created() {
+
+  },
+
   methods: {
 
     startNukeSequence() {
@@ -58,10 +76,6 @@ export default {
       this.$emit("nuke-confirmed")
       this.showNukeConfirmationAlert = false
     },
-
-  },
-
-  created() {
 
   },
 

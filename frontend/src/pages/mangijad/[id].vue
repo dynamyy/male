@@ -2,7 +2,9 @@
   <v-container>
     <v-row v-if="player">
       <v-col>
-        <h1 class="mb-2"><a href="/mangijad">Mängijad</a> / {{ player.name }}</h1>
+        <h1 class="mb-2">
+          <a href="/mangijad">Mängijad</a> / {{ player.name }}
+        </h1>
       </v-col>
     </v-row>
     <v-row v-if="player">
@@ -15,12 +17,16 @@
       </v-col>
     </v-row>
   </v-container>
-  <PlayerStatistics v-if="player" :player-id="player.id"/>
+  <PlayerStatistics
+    v-if="player"
+    :player-id="player.id"
+  />
   <v-container v-else>
     <h2>Mängijat ei leitud</h2>
     <p>Vabandame, antud mängijat ei eksisteeri või on andmed puudulikud.</p>
-    <v-btn color="primary"
-           @click="this.$router.push('/mangijad')"
+    <v-btn
+      color="primary"
+      @click="$router.push('/mangijad')"
     >
       Tagasi mängijate lehele
     </v-btn>
@@ -42,6 +48,15 @@ export default {
       playerId: null,
       showModifyPlayerDialog: false,
     }
+  },
+
+  created() {
+    this.playerId = this.$route.params.id
+    this.$watch(
+      () => this.$route.params.id,
+      this.fetchPlayerData,
+      {immediate: true}
+    )
   },
 
   methods: {
@@ -69,15 +84,6 @@ export default {
     updatePlayer() {
       this.player = this.fetchPlayerData()
     },
-  },
-
-  created() {
-    this.playerId = this.$route.params.id
-    this.$watch(
-      () => this.$route.params.id,
-      this.fetchPlayerData,
-      {immediate: true}
-    )
   },
 
 }
